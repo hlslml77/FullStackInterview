@@ -37,29 +37,29 @@ describe('Advanced Crawler Test Suite', () => {
   });
 
   // 选择器失效测试
-test('Should detect selector changes', async () => {
-  const outdatedConfig = {
-    blogUrl: 'https://blog.coinbase.com',
-    selectors: {
-      articleSelector: '.obsolete-selector',
-      // ...其他错误选择器
-    }
-  };
-
-  await expect(crawler.scrapeBlog(outdatedConfig))
-    .rejects
-    .toThrow('Selector not found');
-});
-
-// 反爬机制处理测试
-test('Should handle 403 Forbidden', async () => {
-  const antiBotConfig = {
-    blogUrl: 'https://website-with-anti-crawling.com',
-    // ...
-  };
-
-  await expect(crawler.scrapeBlog(antiBotConfig))
-    .rejects
-    .toThrow('Access denied');
-});
+  test('Should detect selector changes', async () => {
+    const outdatedConfig = {
+      blogUrl: 'https://blog.coinbase.com',
+      selectors: {
+        articleSelector: '.obsolete-selector',
+        // ...其他错误选择器
+      }
+    };
+  
+    await expect(crawler.scrapeBlog(outdatedConfig))
+      .rejects
+      .toThrow('Selector not found');
+  });
+  
+  // 反爬机制处理测试
+  test('Should handle 403 Forbidden', async () => {
+    const antiBotConfig = {
+      blogUrl: 'https://website-with-anti-crawling.com',
+      // ...
+    };
+  
+    await expect(crawler.scrapeBlog(antiBotConfig))
+      .rejects
+      .toThrow('Access denied');
+  });
 });
